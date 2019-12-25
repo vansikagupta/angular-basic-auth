@@ -10,13 +10,15 @@ export class HttpClientService {
     constructor(private httpClient:HttpClient) {
     }
 
-    getUser(username)
+    getUser(username, password)
     {
-        console.log("in getuser")
-        return this.httpClient.get<UserModel>('http://localhost:8081/rest/loginuser');
+        console.log("in getuser");
+        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+        return this.httpClient.get<UserModel>('http://localhost:8081/rest/loginuser',{headers});
     }    
 
     public createUser(user) {
-        return this.httpClient.post<UserModel>("http://localhost:8081/registration", user);
+        //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+        return this.httpClient.post<UserModel>("http://localhost:8081/rest/registration", user);
     }
 }

@@ -1,1 +1,12 @@
-<p>user-details works!</p>
+<div class="jumbotron mx-5 my-5">
+    <div class="card" style="width: 25rem;">
+        <div class="mx-5 my-5 b"><h2>Welcome {{loggedUser.username}}</h2></div>
+        <hr>
+        <div class="card-body">
+            <h5 class="card-title">First name: {{loggedUser.firstName}}</h5>
+            <h5 class="card-title"> Last name: {{loggedUser.lastName}}</h5>
+            <p class="card-text">About: {{loggedUser.about}}</p>
+            <button type="button" class="btn btn-warning btn-block" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</div>

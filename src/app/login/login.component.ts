@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['user'])
                 alert("Logged successfully.");
                 console.log("logged in");
+            },
+            error =>{
+                alert("Wrong Credentials");
+                console.log("login error");
             });
     }
 }

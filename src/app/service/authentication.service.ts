@@ -12,18 +12,20 @@ export class AuthenticationService {
     }
 
     authenticate(username, password) {
+        const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
         //const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
         //let formData = "username="+username+'&'+"password="+password;
         const formData: FormData = new FormData();
         formData.append("username", username);
         formData.append("password", password);
-        return this.httpClient.post<any>('http://localhost:8081/login',formData).pipe(
+        return this.httpClient.get<any>('http://localhost:8081/rest/validateLogin',{headers}).pipe(
         map(
-            userData => {
+          userData => {
             sessionStorage.setItem('username',username);
+            sessionStorage.setItem('password',password);
             return userData;
-            }
-        ));
+          }
+          ));
     }
   
 
